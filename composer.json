@@ -1,0 +1,16 @@
+{
+    "name": "bmcminn/file-statsmon",
+    "description": "A simple file access analytics monitor",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Brandtley McMinn",
+            "email": "labs@gbox.name"
+        }
+    ],
+    "require": {
+        "bramus/router": "^1.1",
+        "vlucas/phpdotenv": "^2.4"
+    }
+}
