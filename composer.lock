@@ -4,8 +4,56 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "abd27f95ea43a94ea07ebc1fda379d32",
+    "content-hash": "0471e9668bb0c5c418e9278a2b45e1cb",
     "packages": [
+        {
+            "name": "aheinze/mongo-lite",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aheinze/mongo-lite.git",
+                "reference": "dcd8d8462482999c2fbf22895742b132349ab4a1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aheinze/mongo-lite/zipball/dcd8d8462482999c2fbf22895742b132349ab4a1",
+                "reference": "dcd8d8462482999c2fbf22895742b132349ab4a1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "MongoLite": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Artur Heinze",
+                    "email": "artur@agentejo.com",
+                    "homepage": "http://agentejo.com"
+                }
+            ],
+            "description": "Schemaless database on top of SqLite",
+            "homepage": "https://github.com/aheinze/MongoLite",
+            "keywords": [
+                "database",
+                "no-sql",
+                "pdo",
+                "schemaless",
+                "sqlite"
+            ],
+            "time": "2015-08-28T07:49:01+00:00"
+        },
         {
             "name": "bramus/router",
             "version": "1.1",
