@@ -1,6 +1,13 @@
+; APP CONTENT
+content/
+
 ; COMPOSER
 composer.phar
 /vendor/
+
+
+; SUBLIME TEXT
+*.*workspace
 
 
 ; NPM/NODE

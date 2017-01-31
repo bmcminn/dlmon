@@ -9,9 +9,18 @@
             "email": "labs@gbox.name"
         }
     ],
+    "autoload": {
+        "psr-0": {
+            "Gbox\\": "app/"
+        },
+        "files": [
+            "app/helpers.php"
+        ]
+    },
     "require": {
         "bramus/router": "^1.1",
         "vlucas/phpdotenv": "^2.4",
-        "aheinze/mongo-lite": "^1.0"
+        "aheinze/mongo-lite": "^1.0",
+        "mustache/mustache": "^2.11"
     }
 }

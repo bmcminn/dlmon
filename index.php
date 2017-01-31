@@ -3,6 +3,9 @@
 require "vendor/autoload.php";
 
 
+use Gbox\JSON as JSON;
+
+
 //
 // LOAD ENVIRONMENT CONFIGS
 //
@@ -15,8 +18,19 @@ $dotenv->load();
 //
 define('DS',            DIRECTORY_SEPARATOR);
 define('ROOT_DIR',      __DIR__);
+define('LOGS_DIR',      __DIR__.'/logs');
 define('DATA_DIR',      __DIR__.'/data');
 define('CONTENT_DIR',   __DIR__.'/content');
+define('VIEWS_DIR',     __DIR__.'/views');
+
+
+
+//
+// DEFINE BASE MODEL
+//
+model('page', [
+    'title'     => isset($_ENV['APP_TITLE']) ? $_ENV['APP_TITLE'] : 'Title Here'
+]);
 
 
 //
@@ -32,15 +46,10 @@ $DB     = $CLIENT->files;
 $FILES  = $DB->files;
 
 
-// $entry = [
-//     "path"  => CONTENT_DIR.DS.'filename.mp3'
-// ,   "count" => 0
-// ];
-
-// $FILES->insert($entry);
-$data = $FILES->findOne(["count" => 0]);
-
-print_r($data);
+//
+// INIT TEMPLATE ENGINE
+//
+$TPL    = new Mustache_Engine;
 
 
 //
@@ -49,18 +58,58 @@ print_r($data);
 $ROUTER = new \Bramus\Router\Router();
 
 
-// initialize route handler for content
-$ROUTER->get('/content/(\w+)', function($path) {
-    echo $path;
+// initialize route handler for media
+$ROUTER->get('/media/(.*)', function($filename) use ($FILES, $TPL) {
+
+    info($filename);
+
+    if (!file_exists(CONTENT_DIR.DS.$filename)) {
+        debug('file doesn\'t exist');
+        return;
+    }
+
+
+    // query the $FILES collection for our file
+    $file = $FILES->findOne([
+            'name' => $filename
+        ]);
+    info(JSON::stringify($file));
+
+    if ($file->count()) {
+        info(JSON::stringify($file));
+
+    } else {
+        debug("no file found, creating record");
+
+    }
+
+
+    // $template = get_template('index');
+
+    // $model = array_replace_recursive(model(), [
+    //     'page' => [
+    //         'title' => 'Waffles!!'
+    //     ]
+    // ]);
+
+    // echo $TPL->render($template, $model);
+
 });
-
-
 
 
 // initialize home route handler
-$ROUTER->get('/', function() {
-    echo "";
+$ROUTER->get('/', function() use ($TPL) {
+    $template = get_template('index');
+
+    $model = array_replace_recursive(model(), [
+        'page' => [
+            'title' => 'Waffles!!'
+        ]
+    ]);
+
+    echo $TPL->render($template, $model);
 });
+
 
 // app router 404 handler
 $ROUTER->set404(function() {
