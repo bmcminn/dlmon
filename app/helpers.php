@@ -72,4 +72,4 @@ function logger($message, $type='info') {
 function info($message)  { logger($message, 'INFO'); }
 function error($message) { logger($message, 'ERROR'); }
 function debug($message) { logger($message, 'DEBUG'); }
-function warn($message)  { logger($message, 'WARN'); }
+function warn($message)  { logger($message, 'WARNING'); }
