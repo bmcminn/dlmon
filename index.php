@@ -1,6 +1,19 @@
 <?php
 
-require "vendor/autoload.php";
+// setup the mime-types the app should filter
+$fileExtensions = require('app/config.php');
+
+// serve the requested resource as-is.
+if (preg_match("/\.(?:".implode('|', $fileExtensions['CONTENT_FILE_EXTS']).")$/", preg_replace('/\?[\s\S]+/i', '', $_SERVER['REQUEST_URI']))) {
+    return false;
+}
+
+
+// Set timezone
+date_default_timezone_set("UTC");
+
+
+require 'vendor/autoload.php';
 
 
 use Gbox\JSON as JSON;
@@ -17,11 +30,13 @@ $dotenv->load();
 // DEFINE APP CONSTANTS
 //
 define('DS',            DIRECTORY_SEPARATOR);
+define('EOL',           PHP_EOL);
+
 define('ROOT_DIR',      __DIR__);
-define('LOGS_DIR',      __DIR__.'/logs');
-define('DATA_DIR',      __DIR__.'/data');
-define('CONTENT_DIR',   __DIR__.'/content');
-define('VIEWS_DIR',     __DIR__.'/views');
+define('LOGS_DIR',      __DIR__.DS.'logs');
+define('DATA_DIR',      __DIR__.DS.'data');
+define('CONTENT_DIR',   __DIR__.DS.'content');
+define('VIEWS_DIR',     __DIR__.DS.'views');
 
 
 
@@ -31,6 +46,12 @@ define('VIEWS_DIR',     __DIR__.'/views');
 model('page', [
     'title'     => isset($_ENV['APP_TITLE']) ? $_ENV['APP_TITLE'] : 'Title Here'
 ]);
+
+
+//
+//
+//
+$CONFIG = require('./app/config.php');
 
 
 //
@@ -58,41 +79,86 @@ $TPL    = new Mustache_Engine;
 $ROUTER = new \Bramus\Router\Router();
 
 
+$DATA = [
+    'CONFIG'    => $CONFIG
+,   'DB'        => $DB
+,   'FILES'     => $FILES
+,   'TPL'       => $TPL
+,   'ROUTER'    => $ROUTER
+];
+
+
+
 // initialize route handler for media
-$ROUTER->get('/media/(.*)', function($filename) use ($FILES, $TPL) {
+$ROUTER->match('GET|HEAD', '/media/(.*)', function($filename) use ($DATA) {
 
-    info($filename);
+    // get data components
+    extract($DATA);
 
-    if (!file_exists(CONTENT_DIR.DS.$filename)) {
-        debug('file doesn\'t exist');
-        return;
-    }
+    print_r($filename);
+
+    // compose file glob path
+    // $fileExts   = join(',', $CONFIG['CONTENT_FILE_EXTS']);
+    // $filepath   = CONTENT_DIR.DS.$filename.".{{$fileExts}}";
+    $filepath   = CONTENT_DIR.DS.$filename;
+
+    $filepath   = preg_replace('/\//', DS, $filepath);
+
+    print_r($filepath);
+
+    // glob for file in question
+    $file = glob($filepath);
+
+
+    // return;
+
+    // // if file does not exist bug out and 404
+    // if (!count($file) > 0) {
+    //     echo "file doesn't exist... need to redirect to 404";
+    //     warn('missing file requested:', $filepath);
+    //     header("HTTP/1.0 404 Not Found");
+    //     header("Location: /404");
+    //     return;
+    // }
+
+    // get resulting filepath
+    $file = $file[0];
 
 
     // query the $FILES collection for our file
-    $file = $FILES->findOne([
-            'name' => $filename
-        ]);
-    info(JSON::stringify($file));
+    $filedata = $FILES->findOne([
+        'name' => $filename
+    ]);
 
-    if ($file->count()) {
-        info(JSON::stringify($file));
 
+    if ($filedata) {
+        print_r($filedata);
     } else {
-        debug("no file found, creating record");
 
+        $filedata = [
+            'name'  => $filename
+        ,   'count' => 1
+        ];
+
+        $FILES->insert($filedata);
     }
 
 
-    // $template = get_template('index');
+    // bump the file access count
+    $filedata['count'] += 1;
 
-    // $model = array_replace_recursive(model(), [
-    //     'page' => [
-    //         'title' => 'Waffles!!'
-    //     ]
-    // ]);
 
-    // echo $TPL->render($template, $model);
+    // update the file record with relavent stats
+    $FILES->update(['name' => $filename], $filedata);
+
+
+    if (isset($_ENV['DEBUG']) && $_ENV['DEBUG'] === true) {
+        get_file($file);
+
+    } else {
+        echo "DEBUG";
+
+    }
 
 });
 
@@ -115,6 +181,7 @@ $ROUTER->get('/', function() use ($TPL) {
 $ROUTER->set404(function() {
     header('HTTP/1.1 404 Not Found');
     echo "404...";
+    warn('404...');
     // ... do something special here
 });
 

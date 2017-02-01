@@ -49,12 +49,14 @@ function get_template($tplname) {
  * @param  [type] $message [description]
  * @return [type]          [description]
  */
-function logger($message, $type='info') {
+function _logger($message, $type='info') {
 
     // make the logs directory if not already created
     if (!is_dir(LOGS_DIR)) {
         mkdir(LOGS_DIR);
     }
+
+    $message = join(' ', $message);
 
     $logfile = LOGS_DIR.DS.'debug-'.date('Y-m-d').'.log';
 
@@ -69,7 +71,26 @@ function logger($message, $type='info') {
     return $message;
 }
 
-function info($message)  { logger($message, 'INFO'); }
-function error($message) { logger($message, 'ERROR'); }
-function debug($message) { logger($message, 'DEBUG'); }
-function warn($message)  { logger($message, 'WARNING'); }
+function info($message)  { _logger(func_get_args(), 'INFO'); }
+function error($message) { _logger(func_get_args(), 'ERROR'); }
+function debug($message) { _logger(func_get_args(), 'DEBUG'); }
+function warn($message)  { _logger(func_get_args(), 'WARNING'); }
+
+
+
+function get_file($filepath) {
+    debug('filepath for media:', $filepath);
+    if (file_exists($filepath)) {
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename="'.basename($filepath).'"');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($filepath));
+        readfile($filepath);
+        exit;
+    } else {
+        error('missing file', $filepath);
+    }
+}
