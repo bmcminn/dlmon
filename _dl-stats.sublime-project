@@ -1,10 +1,12 @@
 {
-    "file_exclude_patterns": [
-        "*.*workspace"
-    ],
-    "folder_exclude_patterns": [
-        "vendor"
-    ],
+	"file_exclude_patterns":
+	[
+		"*.*workspace"
+	],
+	"folder_exclude_patterns":
+	[
+		// "vendor"
+	],
 	"folders":
 	[
 		{

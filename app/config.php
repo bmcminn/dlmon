@@ -2,7 +2,7 @@
 
 $config = [
 
-    'CONTENT_FILE_EXTS' => [ 'jpeg', 'jpg', 'png', 'gif', 'mp4', 'avi' ]
+    'CONTENT_FILE_EXTS' => [ 'jpeg', 'jpg', 'png', 'gif', 'mp*', 'avi' ]
 
 ];
 
