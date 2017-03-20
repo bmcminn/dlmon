@@ -1,0 +1,11 @@
+{
+  "name": "dlstats-monitor",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/bmcminn/dlstats-monitor",
+  "author": "Brandtley McMinn <labs@gbox.name>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "php -S 127.0.0.1:3005 -t app/"
+  }
+}
