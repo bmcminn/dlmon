@@ -1,0 +1,14 @@
+{
+  "name": "dlstats-monitor",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/bmcminn/dlstats-monitor",
+  "author": "bmcminn <bmcminn@users.noreply.github.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "php -S localhost:3005 index.php"
+  },
+  "dependencies": {
+    "dotenv-safe": "^4.0.3"
+  }
+}

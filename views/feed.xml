@@ -1,0 +1,85 @@
+    <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:atom="http://www.w3.org/2005/Atom"
+    xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+    xmlns:media="http://search.yahoo.com/mrss/"
+    >
+
+    <channel>
+    <title>{{ page.title }}</title>
+    <atom:link href="{{ domain }}/feed/podcast/" rel="self" type="application/rss+xml" />
+    <link>{{ domain }}</link>
+    <description>TESTING THSI THING.</description>
+    <lastBuildDate>Wed, 01 Feb 2017 23:44:04 +0000</lastBuildDate>
+    <language>en-US</language>
+    <sy:updatePeriod>hourly</sy:updatePeriod>
+    <sy:updateFrequency>1</sy:updateFrequency>
+    <generator>https://wordpress.org/?v=4.6.3</generator>
+    <site xmlns="com-wordpress:feed-additions:1">54408968</site>
+    <copyright>Copyright © {{ page.title }} 2013-2015 </copyright>
+    <managingEditor>rupato+{{ page.title }}@gmail.com ({{ page.title }})</managingEditor>
+    <webMaster>rupato+{{ page.title }}@gmail.com ({{ page.title }})</webMaster>
+    <category>Web, Design, Development, UX</category>
+    <ttl>1440</ttl>
+    <image>
+    <url>{{ domain }}/wp-content/uploads/2012/08/{{ page.title }}_album-copy_sm.jpeg</url>
+    <title>{{ page.title }}</title>
+    <link>{{ domain }}</link>
+    <width>144</width>
+    <height>144</height>
+    </image>
+    <itunes:subtitle>A live podcast about web design and development with Chris Coyier &#38; Dave Rupert</itunes:subtitle>
+    <itunes:summary>{{ page.title }} is a podcast about front end web design, development and UX. Each week Chris Coyier and Dave Rupert are joined by a special guest to talk shop and answer listener submitted questions.</itunes:summary>
+    <itunes:keywords>{{ page.title }}Show, frontend, webdesign, web, development, design, UX</itunes:keywords>
+    <itunes:category text="Technology">
+    <itunes:category text="Tech News" />
+    </itunes:category>
+    <itunes:category text="Technology" />
+    <itunes:category text="Arts">
+    <itunes:category text="Design" />
+    </itunes:category>
+    <itunes:author>{{ page.title }}</itunes:author>
+    <itunes:owner>
+    <itunes:name>{{ page.title }}</itunes:name>
+    <itunes:email>rupato+{{ page.title }}@gmail.com</itunes:email>
+    </itunes:owner>
+    <itunes:block>no</itunes:block>
+    <itunes:explicit>no</itunes:explicit>
+    <itunes:image href="{{ domain }}/wp-content/uploads/2012/08/{{ page.title }}_album.jpeg" />
+    <item>
+        <title>TEST: WHATEVES</title>
+        <link>{{ domain }}/episodes/248-amp/</link>
+        <comments>{{ domain }}/episodes/248-amp/#comments</comments>
+        <pubDate>Mon, 30 Jan 2017 23:53:58 +0000</pubDate>
+        <dc:creator><![CDATA[davatron5000]]></dc:creator>
+                <category><![CDATA[All Episodes]]></category>
+
+        <guid isPermaLink="false">{{ domain }}/?p=1067</guid>
+        <description>
+            <![CDATA[Getting AMP&#8217;d with AMP. We&#8217;re going to talk about the #hotdrama about AMP with a couple of AMP experts. Jump to a discussion on&#8230; 1:06 What is AMP? 9:37 What problems is AMP trying to solve? 15:15 AMP is a wake up call but also a stop-gap solution. 16:35 A lot of people consider AMP [&#8230;]]]>
+        </description>
+        <content:encoded>
+            <![CDATA[
+            Content description goes here
+        ]]></content:encoded>
+
+        <wfw:commentRss>{{ domain }}/episodes/248-amp/feed/</wfw:commentRss>
+        <slash:comments>3</slash:comments>
+        <post-id xmlns="com-wordpress:feed-additions:1">1067</post-id>
+        <enclosure url="{{ domain }}/media/audio/01-Let-Their-Walls-Fall" length="50703778" type="audio/mpeg" />
+        <itunes:duration>1:10:19</itunes:duration>
+        <itunes:subtitle>
+            Description content
+        </itunes:summary>
+        <itunes:author>{{ page.title }}</itunes:author>
+        <itunes:explicit>no</itunes:explicit>
+        <itunes:block>no</itunes:block>
+    </item>
+
+</channel>
+</rss>
+<!-- http://127.0.0.1:3005/media/audio/01-Let-Their-Walls-Fall -->

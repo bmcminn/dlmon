@@ -41,7 +41,6 @@ $dotenv = new Dotenv\Dotenv(__DIR__);
 $dotenv->load();
 
 
-
 //
 // DEFINE BASE MODEL
 //
@@ -55,13 +54,11 @@ model('page', [
 //
 $CONFIG = require('./app/config.php');
 
-
 //
 // INIT DB INSTANCE
 //
 $CLIENT = new MongoLite\Client(DATA_DIR);
 $DB     = $CLIENT->files;
-
 
 //
 // DEFINE DB COLLECTION DATA
@@ -81,6 +78,7 @@ $TPL    = new Mustache_Engine;
 $ROUTER = new \Bramus\Router\Router();
 
 
+//
 $MODULE_CONTAINER = [
     'CONFIG'    => $CONFIG
 ,   'DB'        => $DB
@@ -89,6 +87,16 @@ $MODULE_CONTAINER = [
 ,   'TPL'       => $TPL
 ,   'ROUTER'    => $ROUTER
 ];
+
+
+//
+$ROUTER->match('GET', '/', function() use ($MODULE_CONTAINER) {
+
+    // get data components
+    extract($MODULE_CONTAINER);
+
+    echo "SEFSJKL";
+});
 
 
 // initialize route handler for media

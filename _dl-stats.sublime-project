@@ -5,7 +5,7 @@
 	],
 	"folder_exclude_patterns":
 	[
-		// "vendor"
+		"vendor"
 	],
 	"folders":
 	[
