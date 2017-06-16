@@ -1,0 +1,8 @@
+
+// TODO: Finish auth tutorial -- https://www.youtube.com/watch?v=2u7VxiyKqYk&list=PLfdtiltiRHWGc_yY90XRdq6mRww042aEC&index=2
+// TODO: look into billboard.js for dashboard analytics
+// TODO: look into Medoo ORM/DB module
+// TODO: look into elogquent and slim tutorial
+    - https://akrabat.com/using-testing-eloquent-in-slim-framework/
+    - https://www.slimframework.com/docs/cookbook/database-eloquent.html
+    - http://www.bradcypert.com/building-a-restful-api-in-php-using-slim-eloquent/
