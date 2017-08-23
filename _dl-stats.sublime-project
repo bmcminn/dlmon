@@ -4,9 +4,11 @@
             "file_exclude_patterns": [
                 "*.*workspace"
             ,   "*.lock"
+            ,   "*.sqlite"
             ],
             "folder_exclude_patterns": [
                 "vendor"
+            ,   "tmp"
             ],
             "path": "."
         }

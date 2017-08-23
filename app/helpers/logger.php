@@ -1,5 +1,7 @@
 <?php
 
+use Webmozart\PathUtil\Path;
+
 /**
  * Appends a log entry to a daily log file
  * @param  [string, obj, array, int, double] $data  Data or message to be written to the log file
@@ -18,12 +20,11 @@ function logger($data, $level="info") {
     }
 
     // ensure LOGS_DIR exists
-    if (!file_exists(LOGS_DIR)) {
-        mkdir(LOGS_DIR);
-    }
+    ensurePath(LOGS_DIR);
 
     // get the filepath of our daily logs file
-    $filepath = Path::join(LOGS_DIR, "/${date('Y-m-d')}.log");
+    $filedate = date('Y-m-d');
+    $filepath = Path::join(LOGS_DIR, "/${filedate}.log");
 
     // capture the stack trace so we know what file called this function
     $db = debug_backtrace();

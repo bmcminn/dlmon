@@ -14,6 +14,10 @@
         "webmozart/path-util": "^2.3",
         "bramus/router": "^1.1",
         "monolog/monolog": "^1.23",
-        "josegonzalez/dotenv": "^3.1"
+        "josegonzalez/dotenv": "^3.1",
+        "erusev/parsedown": "^1.6",
+        "erusev/parsedown-extra": "^0.7.1",
+        "piwik/device-detector": "^3.8",
+        "doctrine/cache": "^1.7"
     }
 }

@@ -11,7 +11,7 @@ if (!defined('ROUTES')) {
     ,   'reset_password'        => '/user/reset-password'
     ,   'register_client'       => '/register/client'
     ,   'register_admin'        => '/register/admin'
-    ,   'admin_dashboard'       => '/dashboard'
+    ,   'user_dashboard'        => '/dashboard'
     ]);
 
 }

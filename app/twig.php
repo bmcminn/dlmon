@@ -1,7 +1,7 @@
 <?php
 
 // Define twig extension
-!defined('VIEWS_EXT') ? define('VIEWS_EXT', getenv('VIEWS_EXT') || '.twig') : null;
+!defined('VIEWS_EXT') ? define('VIEWS_EXT', $_ENV['VIEWS_EXT'] || '.twig') : null;
 
 use Webmozart\PathUtil\Path;
 
@@ -14,18 +14,27 @@ $twig = new Twig_Environment($loader, array(
 ));
 
 
+
+// ----------------------------------------------------------------------
+
 $twig->addFilter(new Twig_SimpleFilter('asset', function($str) {
     return ROUTES['static'] . "/${str}";
 }));
 
 
+// ----------------------------------------------------------------------
+
 // TODO: hookup parsedown library here
-$twig->addFilter(new Twig_SimpleFilter('md', function($str) {
-    return $str;
+
+// init Parsedown instance
+$Parsedown = new Parsedown();
+
+$twig->addFilter(new Twig_SimpleFilter('md', function($str) use ($Parsedown) {
+    return $parsedown->text($str);
 }));
 
 
-// TODO: hookup parsedown library here
+// ----------------------------------------------------------------------
 $twig->addFilter(new Twig_SimpleFilter('embed', function($str) {
     $filepath = Path::join(__DIR__, '../static', $str);
 
@@ -36,10 +45,6 @@ $twig->addFilter(new Twig_SimpleFilter('embed', function($str) {
 
     return $content;
 }, ['is_safe' => ['html', 'js']]));
-
-
-
-
 
 
 return $twig;
