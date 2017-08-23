@@ -1,14 +1,14 @@
 {
-	"folders": [
-		{
+    "folders": [
+        {
             "file_exclude_patterns": [
-                "*.*workspace",
-                "*.sqlite"
+                "*.*workspace"
+            ,   "*.lock"
             ],
             "folder_exclude_patterns": [
                 "vendor"
             ],
-			"path": "."
-		}
-	]
+            "path": "."
+        }
+    ]
 }

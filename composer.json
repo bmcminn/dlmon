@@ -11,7 +11,9 @@
     "require": {
         "twig/twig": "^2.4",
         "symfony/yaml": "^3.3",
-        "slim/slim": "^3.8",
-        "slim/twig-view": "^2.2"
+        "webmozart/path-util": "^2.3",
+        "bramus/router": "^1.1",
+        "monolog/monolog": "^1.23",
+        "josegonzalez/dotenv": "^3.1"
     }
 }

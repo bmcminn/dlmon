@@ -1,3 +1,5 @@
+# // TODO: needs more base config?
+
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
