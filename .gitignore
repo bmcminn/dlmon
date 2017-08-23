@@ -1,5 +1,7 @@
 ; APP CONTENT
 content/
+downloads/
+__*
 
 ; COMPOSER
 composer.phar
