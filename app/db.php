@@ -1,8 +1,8 @@
 <?php
 
-!defined('DB_NAME') ? define('DB_NAME', getenv('DB_NAME') || '__db.sqlite');
+!defined('DB_NAME') ? define('DB_NAME', getenv('DB_NAME') || '__db.sqlite') : null;
 
-!defined('DB_PATH') ? define('DB_PATH', DATA_DIR . '/' . DB_NAME);
+!defined('DB_PATH') ? define('DB_PATH', DATA_DIR . '/' . DB_NAME) : null;
 
 
 try {
