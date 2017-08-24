@@ -53,14 +53,14 @@ $router->post(ROUTES['login'], function() use ($db) {
     header('content-type: application/json');
 
     // Sanitize form submission data
-    $user_email     = trim(filter_var($_POST['email'],      FILTER_SANITIZE_EMAIL));
+    $email     = trim(filter_var($_POST['email'],      FILTER_SANITIZE_EMAIL));
     $password  = trim(filter_var($_POST['password'],   FILTER_SANITIZE_STRING));
 
     // Setup response collection
     $res = [];
 
     // Validate the fields aren't empty
-    if (empty($user_email)) {
+    if (empty($email)) {
         $res['email'] = 'Field cannot be empty';
     }
 
@@ -69,7 +69,7 @@ $router->post(ROUTES['login'], function() use ($db) {
     }
 
     // Valide email formatting
-    if (!preg_match('/.*@.*\..*/i', $user_email)) {
+    if (!preg_match('/.*@.*\..*/i', $email)) {
         $res['email'] = 'Email address is not correct format: <code>example@email.com</code>';
     }
 
@@ -80,7 +80,7 @@ $router->post(ROUTES['login'], function() use ($db) {
     }
 
     // No erros means we look up the user
-    $stmt = $db->query("SELECT * FROM `users` WHERE user_email='${user_email}'");
+    $stmt = $db->query("SELECT * FROM `users` WHERE email='${email}'");
 
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -111,7 +111,7 @@ $router->post(ROUTES['login'], function() use ($db) {
     $_SESSION['user'] = $user;
 
     // reroute user to [user_type]_dashboard route
-    $res['redirect'] = ROUTES['admin_dashboard'];
+    $res['redirect'] = ROUTES['user_dashboard'];
 
     echo json_encode($res);
     return;

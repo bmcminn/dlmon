@@ -2,6 +2,7 @@
 content/
 downloads/
 __*
+static/
 
 ; COMPOSER
 composer.phar

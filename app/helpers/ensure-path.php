@@ -8,9 +8,10 @@
 function ensurePath($path) {
 
     if (is_dir($path)) {
-        return;
+        return $path;
     }
 
     mkdir($path);
 
+    return $path;
 }

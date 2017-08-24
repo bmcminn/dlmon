@@ -7,9 +7,11 @@ use Webmozart\PathUtil\Path;
 
 require 'config/paths.config.php';
 
+$cacheDir = ensurePath(DATA_DIR . '/__cache');
+
 $loader = new Twig_Loader_Filesystem(VIEWS_DIR);
 $twig = new Twig_Environment($loader, array(
-    'cache'         => VIEWS_DIR . '/__cache'
+    'cache'         => DATA_DIR . '/__cache'
 ,   'auto_reload'   => true
 ));
 
@@ -27,9 +29,9 @@ $twig->addFilter(new Twig_SimpleFilter('asset', function($str) {
 // TODO: hookup parsedown library here
 
 // init Parsedown instance
-$Parsedown = new Parsedown();
+$parsedown = new Parsedown();
 
-$twig->addFilter(new Twig_SimpleFilter('md', function($str) use ($Parsedown) {
+$twig->addFilter(new Twig_SimpleFilter('md', function($str) use ($parsedown) {
     return $parsedown->text($str);
 }));
 

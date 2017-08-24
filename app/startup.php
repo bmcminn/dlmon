@@ -88,7 +88,11 @@ $db->exec(Q::CREATE_TABLE('clients', [
 $stmt   = $db->query("SELECT * FROM users WHERE type='admin'");
 $admins = $stmt->fetch(\PDO::FETCH_ASSOC);
 
-if (empty($admins) && REQUEST_URI !== ROUTES['register_admin']) {
+
+
+if (empty($admins)
+&&  REQUEST_URI !== ROUTES['register_admin']
+) {
     $targetPath = ROUTES['register_admin'];
     logger("redirecting user to ${targetPath} to register new admin user.");
     redirect($targetPath);

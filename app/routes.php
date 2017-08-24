@@ -9,38 +9,11 @@ $db     = require 'db.php';
 $router = new \Bramus\Router\Router();
 
 
+
 // Custom 404 Handler
-$router->set404(function() use ($twig) {
+$router->set404(function() use ($twig, $model) {
     header('HTTP/1.1 404 Not Found');
-    echo '404, route not found!';
-});
-
-
-
-// Define routes
-// --------------------------------------------------
-
-$router->get("{ROUTES['static']}/(.*)", function($path) {
-
-    $path = Path::join(ROUTES['static'], $path);
-
-    echo file_get_contents($path);
-});
-
-
-
-// ROUTE: Homepage
-$router->get(ROUTES['home'], function() use ($db, $twig, $model) {
-
-    if (!isset($model['page'])) {
-        $model['page'] = [];
-    }
-
-    // $model['page']['title'] = 'New Client Registration';
-
-    echo $twig->render('homepage.twig', $model);
-
-    return;
+    echo $twig->render('404.twig', $model);
 });
 
 

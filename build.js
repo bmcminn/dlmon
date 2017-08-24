@@ -31,7 +31,7 @@ const svgo      = new SVGO({
 
 const isProduction = process.env.NODE_ENV === 'production' ? true : false;
 
-
+console.log(isProduction);
 
 // Ensure public directory structures exist
 const ASSET_DIRS = {
@@ -75,7 +75,6 @@ _.each(ASSET_DIRS, function(pubDir, id) {
 });
 
 
-
 // RUN INITIAL BUILD ON START UP
 styles();
 scripts();
@@ -109,8 +108,6 @@ chokidar
 ;
 
 
-
-
 //
 // MIGRATE IMAGE ASSETS TO PUBLIC DIRECTORY
 //
@@ -139,7 +136,6 @@ function images() {
 
     // console.log(chalk.green('migrated images'));
 }
-
 
 
 //
@@ -184,7 +180,6 @@ function svg() {
 }
 
 
-
 //
 // MIGRATE FONT ASSETS
 //
@@ -213,7 +208,6 @@ function fonts() {
     console.log(chalk.green('migrated fonts'));
 
 }
-
 
 
 //
@@ -253,7 +247,6 @@ function scripts() {
 }
 
 
-
 //
 // COMPILE STYLES
 //
@@ -282,8 +275,8 @@ function styles() {
         Stylus(content)
             .set('filename',    style)
             .set('paths',       [ path.join(CSS_SRC, '/') ])
-            .set('linenos',     process.env.NODE_ENV ? false : true)
-            .set('compress',    process.env.NODE_ENV ? true : false)
+            .set('linenos',     isProduction ? false : true)
+            .set('compress',    isProduction ? true : false)
             .render(function(err, css) {
 
                 if (err) {
